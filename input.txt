@@ -1,0 +1,22 @@
+MIXTAPE streetname $
+
+flamemethod1 (: homieparam1 : BONES :) : PARTY
+TURNUP
+  DAB _streetdab2 : BONES AKA 1 $
+  CHECK homieparam1 WEAK _streetdab2
+    BOUNCE NOTLIT $
+  YOSEWF
+    BOUNCE LIT $
+  SON
+DEAD
+
+FIRE TURNUP
+  DAB _streetcheck : PARTY AKA flamemethod1 (: 2 :) $
+  CHECK _streetcheck
+    PREACH (: "" :) $
+  REK _streetcheck OTHERLEVEL LIT
+    PREACH (: "" :) $
+  YOSEWF
+    PREACH (: "" :) $
+  SON
+DEAD

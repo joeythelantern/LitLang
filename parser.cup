@@ -1,0 +1,183 @@
+package com.madebyjeffrey;
+
+import java_cup.runtime.*;
+import java.io.IOException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.List;
+import java.util.ArrayList; 
+
+//=======================================
+// Terminals
+//=======================================
+terminal MIXTAPE,FIRE,AKA;
+terminal BONES, WORDONTHASTREET, DAB, PARTY;
+terminal LIT, NOTLIT;
+terminal GETMONEY,THROWMONEY,BALLOUT,CUT;
+terminal CHECK, REK, YOSEWF;
+terminal BOUNCE, PREACH;
+terminal WEAK, WINNING, ONMYLEVEL, OTHERLEVEL;
+terminal TURNUP,DEAD;
+terminal DOLLA, LPAREN, RPAREN,QM;
+terminal HASHTAG;
+terminal COLON;
+terminal DIGIT,LETTER,PLAYA,SON;
+terminal NETHING,NEWLINE;
+terminal STREETNAME, IDENTIFIER;
+terminal STAR, AT, PUNC;
+terminal GITIT, SUHDUDE;
+
+//=======================================
+// Non-Terminals
+//=======================================
+
+non terminal mixtape;
+non terminal mixtape_verse;
+non terminal nochill_verse;
+non terminal fire_verse;
+non terminal flame;
+non terminal formal_homies;
+non terminal formal_homie;
+non terminal playa;
+non terminal block;
+non terminal block_verse;
+non terminal track;
+non terminal local_dab_verse;
+non terminal aka_track;
+non terminal aka_check;
+non terminal aka;
+non terminal beat;
+non terminal beat_left;
+non terminal basedgod_call;
+non terminal basedgod_homies;
+non terminal party_literal;
+non terminal preach_track;
+non terminal wordonthastreetverse;
+non terminal bounce_track;
+non terminal check_track;
+non terminal lit_beat;
+non terminal hustle;
+non terminal gittin_it;
+
+//=======================================
+// Precedence
+//=======================================
+precedence left WEAK, WINNING, ONMYLEVEL, OTHERLEVEL;
+precedence left LIT, NOTLIT;
+precedence left GETMONEY,THROWMONEY,BALLOUT,CUT;
+
+//=======================================
+// Production Rules
+//=======================================
+
+mixtape::= mixtape_verse nochill_verse fire_verse
+;
+
+mixtape_verse::= MIXTAPE IDENTIFIER DOLLA
+;
+
+nochill_verse::= IDENTIFIER LPAREN formal_homies RPAREN COLON playa block
+			   | IDENTIFIER LPAREN RPAREN COLON playa block
+;
+
+fire_verse::= FIRE block
+;
+
+
+formal_homies::= formal_homie HASHTAG formal_homie
+			   | formal_homie
+;
+
+formal_homie::= IDENTIFIER COLON playa
+;
+
+playa ::= BONES | WORDONTHASTREET | DAB | PARTY
+;
+
+block ::= TURNUP block_verse DEAD
+;
+
+block_verse ::= track DOLLA block_verse
+			 | track DOLLA
+			 | track
+;
+
+track ::= block
+	   | local_dab_verse
+	   | aka_track
+	   | bounce_track
+	   | check_track
+	   | preach_track
+	   | basedgod_call
+;
+
+local_dab_verse ::= DAB STREETNAME COLON playa aka
+				 | DAB STREETNAME COLON playa
+;
+
+aka_track ::= STREETNAME aka
+;
+
+aka ::= AKA beat_left
+	 | aka_check
+;
+
+aka_check ::= WEAK
+		   | WINNING
+		   | ONMYLEVEL
+		   | OTHERLEVEL
+;
+
+beat ::= DIGIT 
+	  | STREETNAME
+	  | IDENTIFIER
+	  | basedgod_call
+	  | party_literal
+;
+
+beat_left ::= beat_left hustle beat
+		   | IDENTIFIER LPAREN beat_left RPAREN
+		   | beat
+;
+
+basedgod_call ::= flame LPAREN basedgod_homies RPAREN
+			   | flame LPAREN RPAREN
+;
+
+basedgod_homies ::= beat_left basedgod_homies
+				 | HASHTAG beat_left basedgod_homies
+				 | HASHTAG beat_left
+;
+
+party_literal ::= LIT
+			   | NOTLIT
+;
+
+preach_track ::= PREACH LPAREN wordonthastreetverse RPAREN DOLLA
+;
+
+wordonthastreetverse ::= QM IDENTIFIER QM
+					  | QM QM
+;
+ 
+bounce_track ::= BOUNCE beat_left DOLLA
+;
+
+check_track ::= CHECK lit_beat track SON
+			 | CHECK lit_beat track REK lit_beat track SON
+			 | CHECK lit_beat track YOSEWF track SON
+			 | CHECK lit_beat track REK lit_beat track YOSEWF track SON
+;
+
+lit_beat ::= beat_left aka beat_left
+		  | beat_left
+; 
+
+hustle ::= GETMONEY
+	 	| THROWMONEY
+		| BALLOUT
+		| CUT
+;
+
+gittin_it ::= GITIT LPAREN SUHDUDE DAB RPAREN DOLLA
+;
